@@ -182,3 +182,11 @@ a{
     margin: 20px 0;
 }
 
+.login{
+  padding: 50px;
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+
+
+}
