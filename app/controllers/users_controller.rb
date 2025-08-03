@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    def new #新規登録画面
-        @user = User.new
-    end
+    before_action :authenticate_user!
+
 
     def show #ユーザーリストからの詳細情報
         @user = User.find(params[:id])
@@ -9,17 +8,17 @@ class UsersController < ApplicationController
         
     end
 
-    def create #エンジニア情報登録
-        @user = User.new(user_params)
-        if @user.save
-            redirect_to @user, notice: "登録完了"
+    def update #エンジニア情報更新
+        @user = current_user
+        if @user.update(user_params)
+            redirect_to @user, notice:"プロフィールを更新しました"
         else
-            render :new
+            render :edit
         end
-     end
+    end
 
      def edit
-        @user = User.find(params[:id])
+        @user = current_user
      end
 
      def destroy
@@ -30,5 +29,8 @@ class UsersController < ApplicationController
 
     private
 
+    def user_params
+        params.require(:user).permit(:name. :skill, :description)
+    end
 
 end

@@ -1,27 +1,24 @@
-
 <header class="header-top">
   <h1>エンジニア同士がスキルで繋がれるマッチングアプリ</h1>
 </header>
 
 <div class="login">
-
+  <%= link_to "ログイン", new_user_session_path, class: "btn-element" %>
+  <%= link_to "新規登録", new_user_registration_path, class: "btn-element" %>
 </div>
 
-
 <%= form_with url: search_path, method: :get, local: true do |f| %>
-  <h2>繋がれるユーザー一覧</h2>
-    <div class="search-bar">
-      <p>フリーワード検索：<%= f.text_field :search, placeholder: "フリーワード検索" %></p>
-      <p>スキルで検索：<%= f.text_field :skill, placeholder: "スキルで検索" %></p>
-      <%= f.submit "検索", style: "background-color: #6B61D8; color: white; font-size: 16px; padding: 10px 30px; border: none; border-radius: 5px;" %>
-    </div>
-<%end%>
+  <div class="search-bar">
+    <p>フリーワード検索：<%= f.text_field :search, placeholder: "フリーワード検索" %></p>
+    <p>スキルで検索：<%= f.text_field :skill, placeholder: "スキルで検索" %></p>
+    <%= f.submit "検索", style: "background-color: #6B61D8; color: white; font-size: 16px; padding: 10px 30px; border: none; border-radius: 5px;" %>
+  </div>
+<% end %>
 
 <h2>繋がれるユーザー一覧</h2>
-
-  <% if @users.present? %>
-    <% @users.each do |user| %>
-      < class="user-list">
+<% if @users.present? %>
+  <% @users.each do |user| %>
+    <div class="user-list">
       <p>名前：<%= user.name %></p>
       <p>スキル: <%= user.skill %></p>
       <p>自己紹介: <%= user.description %></p>
@@ -29,9 +26,9 @@
       <%= link_to "詳細", user_path(user), class: "btn btn-primary" %>
     </div>
   <% end %>
-  <% else %>
-    <div class="no-users">
+<% else %>
+  <div class="no-users">
     <h4>ユーザーが登録されていません</h4>
-      <%= link_to "ユーザー登録", new_user_path, class: "btn-element" %>
-    </div>
-  <% end %> 
+    <%= link_to "ユーザー登録", new_user_registration_path, class: "btn-element" %>
+  </div>
+<% end %>
