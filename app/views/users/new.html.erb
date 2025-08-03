@@ -1,0 +1,39 @@
+<header class="header">
+  <a href="/">
+    <h1>エンジニア同士がスキルで繋がれる<br>マッチングアプリ</h1>
+  </a>
+  <ul class="header-menu">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle">管理画面</a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "いいね管理", users_path %></li>
+          <li><%= link_to "マッチング", new_user_path %></li>
+          <li><%= link_to "チャット", "#" %></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle">アカウント</a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "アカウント情報", "#" %></li>
+          <li><%= link_to "プロフィール設定", "#" %></li>
+          <li><%= link_to "ログアウト", "#" %></li>
+        </ul>
+    </li>
+  </ul>
+</header>
+
+<h1 class="page-title">エンジニア情報登録</h1>
+<%= form_with model: @user, local: true do |f| %>
+    <div class="form-group">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
+        <%= f.label :skill, "スキル1" %>
+        <%= f.text_field :skill, class: "form-control", placeholder: "スキルを入力してください。（例）Ruby,pythonなど" %>
+        <span><%= f.label :description, "自己紹介" %></span>
+        <%= f.text_area :description, class: "form-control", placeholder: "趣味や今ハマっていることなど、簡単な自己紹介を入力してください" %>
+    </div>  
+    <div class="form-group">
+        <%= f.submit "登録", class: "btn-element" %>
+    </div>
+<% end %>

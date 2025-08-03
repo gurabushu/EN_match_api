@@ -1,10 +1,12 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
     def new #新規登録画面
         @user = User.new
     end
 
     def show #ユーザーリストからの詳細情報
         @user = User.find(params[:id])
+        @users = User.all
+        
     end
 
     def create #エンジニア情報登録
@@ -25,6 +27,8 @@ class UserController < ApplicationController
         @user.destroy
         redirect_to users_path,notice:"情報を削除しました"
     end
+
+    private
 
 
 end
