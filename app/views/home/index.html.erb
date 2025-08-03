@@ -1,14 +1,13 @@
 
-<header class="header">
+<header class="header-top">
   <h1>エンジニア同士がスキルで繋がれるマッチングアプリ</h1>
 </header>
 
 <div class="login">
-#ここにログインなど、デバイス実装後設置
+
 </div>
 
 
-#ここに検索バー設置。
 <%= form_with url: search_path, method: :get, local: true do |f| %>
   <h2>繋がれるユーザー一覧</h2>
     <div class="search-bar">
@@ -18,9 +17,21 @@
     </div>
 <%end%>
 
-#ここにユーザー一覧を表示。
-<div class="user-list">
+<h2>繋がれるユーザー一覧</h2>
 
-
-</div>
-
+  <% if @users.present? %>
+    <% @users.each do |user| %>
+      < class="user-list">
+      <p>名前：<%= user.name %></p>
+      <p>スキル: <%= user.skill %></p>
+      <p>自己紹介: <%= user.description %></p>
+      <p>登録日: <%= user.created_at.strftime("%Y/%m/%d") %></p>
+      <%= link_to "詳細", user_path(user), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <% else %>
+    <div class="no-users">
+    <h4>ユーザーが登録されていません</h4>
+      <%= link_to "ユーザー登録", new_user_path, class: "btn-element" %>
+    </div>
+  <% end %> 
