@@ -18,8 +18,13 @@ class UserController < ApplicationController
 
      def edit
         @user = User.find(params[:id])
+     end
 
-
+     def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+        redirect_to users_path,notice:"情報を削除しました"
+    end
 
 
 end

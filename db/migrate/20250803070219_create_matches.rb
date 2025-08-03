@@ -4,8 +4,8 @@ class CreateMatches < ActiveRecord::Migration[8.0]
       t.integer :user_id
       t.integer :target_id
       t.boolean :status
-      t.datetime :created_at
-      t.datetime :update_at
+      #t.datetime :created_at
+      #t.datetime :update_at
 
       t.timestamps
     end

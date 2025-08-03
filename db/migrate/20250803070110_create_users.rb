@@ -6,8 +6,8 @@ class CreateUsers < ActiveRecord::Migration[8.0]
       t.string :password
       t.string :skill
       t.text :description
-      t.datetime :created_at
-      t.datetime :update_at
+    #t.datetime :created_at
+    #t.datetime :update_at
 
       t.timestamps
     end
