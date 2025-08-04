@@ -29,7 +29,10 @@
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
 
+  <div class="back-btn">
   <%= f.submit "登録する", class: "btn btn-primary mt-2" %>
-
-  <%= link_to "ログインはこちら", new_session_path(resource_name) %>
+  <button><%= link_to "ログインはこちら", new_session_path(resource_name) %></button>
+  </div>
 <% end %>
+
+<%= link_to "戻る" , root_path, class:"btn-element" %>
