@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
 
-
-    def show #ユーザーリストからの詳細情報
-        @user = User.find(params[:id])
+    def index
         @users = User.all
-        
+        @user = User.new
+    end 
+
+    def show
+         @user = current_user
+        if @user.nil?
+            redirect_to root_path, alert: "ユーザーが見つかりません"
+        else
+            @user = User.find(params[:id])
+        end
     end
 
     def update #エンジニア情報更新
@@ -17,10 +24,6 @@ class UsersController < ApplicationController
         end
     end
 
-     def edit
-        @user = current_user
-     end
-
      def destroy
         @user = User.find(params[:id])
         @user.destroy
@@ -30,7 +33,8 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name. :skill, :description)
+        params.require(:user).permit(:name, :skill, :description)
     end
+
 
 end

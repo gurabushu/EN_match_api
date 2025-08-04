@@ -9,6 +9,43 @@ a{
     color: inherit;
 }
 
+.header-top-login{
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-nav-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #6B61D8;
+  color: white;
+}
+
+.user-list{
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+h2{
+  margin-top: 80px;
+}
+
+.nav-bar ul{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bar ul li{
+    margin: 0 15px;
+}
+
 .header{
     background-color: #6B61D8;
     padding: 50px;
@@ -52,6 +89,20 @@ a{
 
 .search-bar p{
     margin-right: 10px;
+    font-size: 16px;
+}
+
+li{
+    list-style: none;
+}
+
+.btn-login, .btn-signup{
+    background-color: #D9D9D9;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 16px;
 }
 
@@ -203,6 +254,10 @@ a{
   justify-content: center;
 
 
+}
+
+.search-bar{
+  margin-top: 60px;
 }
 
 

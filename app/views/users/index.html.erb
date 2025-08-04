@@ -1,0 +1,16 @@
+#マイページ
+<h2>マイページ</h2>
+<% if user_signed_in? %>
+  <p>ようこそ、<%= current_user.name %>さん！</p>
+<% else %>
+
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-element" %></p>
+
+
+<p>名前: <%= current_user.name %></p>
+<p>スキル: <%= current_user.skill %></p>
+<p>自己紹介: <%= current_user.description %></p>
+<p>登録日: <%= current_user.created_at.strftime("%Y/%m/%d") %></p>
+
+<%= link_to "プロフィール編集", edit_user_registration_path, class: "btn-element" %>
+<%= link_to "繋がれるユーザー一覧へ", users_path, class: "btn-element" %>
