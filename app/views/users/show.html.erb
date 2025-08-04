@@ -2,7 +2,7 @@
 
 <section class="intro-wrapper">
 
-<h1>ユーザー詳細</h1>
+<h1><%= @user.name %>さんのプロフィール </h1>
 
 <div class="user-intro-wrapper">
 <p>ユーザー名: <%= @user.name %></p>
@@ -10,6 +10,12 @@
 <p> 自己紹介：<%= @user.description %></p>
 <p> 登録日： <%= @user.created_at.strftime("%Y年%m月%d日") %></p>
 </div>
+
+<% if current_user.like_users.include?(@user) %>
+  <%= button_to "いいね解除", unlike_user_path(@user), method: :delete %>
+<% else %>
+  <%= button_to "いいね", like_user_path(@user), method: :post %>
+<% end %>
 
 <%= link_to "戻る", users_path, class: "btn btn-primary" %>
 
