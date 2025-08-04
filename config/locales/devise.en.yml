@@ -63,3 +63,18 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
+ja:
+  devise:
+    sessions:
+      signed_in: 'ログインしました。'
+      signed_out: 'ログアウトしました。'
+    registrations:
+      signed_up: 'アカウント登録が完了しました。'
+      updated: 'アカウント情報を変更しました。'
+      destroyed: 'アカウントを削除しました。'
+    passwords:
+      send_instructions: 'パスワード再設定用のメールを送信しました。'
+      updated: 'パスワードを変更しました。'
+    failure:
+      invalid: 'メールアドレスまたはパスワードが正しくありません。'
+      not_found_in_database: 'メールアドレスまたはパスワードが正しくありません。'
