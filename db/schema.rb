@@ -10,27 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_015959) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_05_091502) do
   create_table "likes", force: :cascade do |t|
-    t.integer "liker_id"
-    t.integer "liked_id"
+    t.integer "liker_id", null: false
+    t.integer "liked_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "like_count"
+    t.index ["liked_id"], name: "index_likes_on_liked_id"
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "target_id"
-    t.boolean "status"
+    t.integer "user1_id", null: false
+    t.integer "user2_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.integer "match_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user1_id"], name: "index_matches_on_user1_id"
+    t.index ["user2_id"], name: "index_matches_on_user2_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,4 +45,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_015959) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "likes", "users", column: "liked_id"
+  add_foreign_key "likes", "users", column: "liker_id"
 end

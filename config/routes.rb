@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'logout', to: 'home#logout'
+
+  resources :likes, only: [:create, :destroy ] # いいねのルーティング設定
   
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
     member do 
