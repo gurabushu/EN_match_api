@@ -41,22 +41,37 @@
 <h2>繋がれるユーザー一覧</h2>
 <% if @users.present? %>
   <% @users.each do |user| %>
+
     <div class="user-list">
+      <div class="name-img-wrapper">
+        <div class="user-img">
+          <%= image_tag user.avatar.attached? ? user.avatar : "default_img.png", class: "user-avatar" %>
+        </div>
+    <div class="user-info">
       <h3>名前：<%= user.name %></h3>
       <p>スキル: <%= user.skill %></p>
       <p>自己紹介: <%= user.description %></p>
+      <p>年齢：<%= user.age %>歳</p>
+      <% if user.github.present? %>
+        <h4>GitHub: <%= link_to user.github, user.github, target: "_blank" %></h4>
+      <% else %>
+        <h4>GitHub: 未登録</h4>
+      <% end %>
       <p>登録日: <%= user.created_at.strftime("%Y/%m/%d") %></p>
-
-
+    </div>
+   
+      
+</div>
+<div class="like-button">
       <% if current_user && Like.exists?(liked_id: user.id, liker_id: current_user.id) %>
-  <% like = Like.find_by(liked_id: user.id, liker_id: current_user.id) %>
-  <%= button_to "いいねを取り消す", like_path(like), method: :delete %>
-<% elsif current_user %>
-  <%= button_to "いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
-<% end %>
-
-      <p>いいね数: <%= user.received_likes.count %></p>
-      <%= link_to "詳細", user_path(user), class: "btn btn-primary" %>
+        <% like = Like.find_by(liked_id: user.id, liker_id: current_user.id) %>
+        <%= button_to "いいねを取り消す", like_path(like), method: :delete %>
+        <% elsif current_user %>
+        <%= button_to "いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
+      <% end %>
+      <h4>いいね数: <%= user.received_likes.count %></h4>
+</div>
+      <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
     </div>
   <% end %>
 <% else %>
