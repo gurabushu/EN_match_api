@@ -1,0 +1,16 @@
+<h1>アカウント情報編集</h1>
+
+<%= form_with model: @user, url: account_path, method: :patch, local: true do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password, "新しいパスワード" %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation, "パスワード確認" %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "更新" %>
+<% end %>
+
+<%= link_to "戻る", account_path, class: "btn" %>

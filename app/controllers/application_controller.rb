@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
     # アカウント編集時のパラメータ許可
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :skill, :description])
   end
+
+  def after_sign_in_path_for(resource)
+    mypage_path # サインイン後のリダイレクト先
+  end
 end

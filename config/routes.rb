@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   end
 
   get "search", to: "search#index"  # これが search_path を生成
+  get "account", to: "account#show", as: :account  # アカウント情報のルート設定
+
 
 end

@@ -1,22 +1,17 @@
-#リスト一覧からクリックした人のユーザー詳細
 
 <section class="intro-wrapper">
 
-<h1><%= @user.name %>さんのプロフィール </h1>
+<h1 class="page-title"><%= @user.name %>さんのプロフィール </h1>
 
-<div class="user-intro-wrapper">
+<div class="form-group">
 <p>ユーザー名: <%= @user.name %></p>
 <p> スキル: <%= @user.skill %></p>
 <p> 自己紹介：<%= @user.description %></p>
 <p> 登録日： <%= @user.created_at.strftime("%Y年%m月%d日") %></p>
 </div>
 
-<% if current_user.like_users.include?(@user) %>
-  <%= button_to "いいね解除", unlike_user_path(@user), method: :delete %>
-<% else %>
-  <%= button_to "いいね", like_user_path(@user), method: :post %>
-<% end %>
-
-<%= link_to "戻る", users_path, class: "btn btn-primary" %>
-
+<div class="back-btn">
+<%= link_to "戻る", root_path, class: "btn-element" %>
+<%= link_to "編集", edit_user_path(@user), class: "btn-element" %>
+</div>
 </section>

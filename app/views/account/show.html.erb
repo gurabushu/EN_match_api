@@ -1,0 +1,13 @@
+<h1 class="page-title">アカウント情報</h1>
+
+<div  class="form-group">
+<p>名前：<%= @user.name %></p>
+<p>メールアドレス: <%= @user.email %></p>
+</div>
+
+<div class="back-btn">
+  <%= link_to "アカウント情報編集", edit_user_registration_path, class: "btn-element" %>
+  <%= button_to "アカウント削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn-element" %>
+</div>
+
+  <%= link_to "一覧に戻る", root_path, class: "btn-element" %>

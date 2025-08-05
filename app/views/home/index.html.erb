@@ -11,7 +11,7 @@
   </header>
   <nav class="nav-bar">
     <ul>
-      <li><%= link_to "アカウント情報", edit_user_registration_path, class: "nav-link" %></li>
+      <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
       <li><%= link_to "いいね管理", root_path, class: "nav-link" %></li>
       <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
@@ -19,12 +19,13 @@
   </nav>
 </div>
 <% else %>
-
-
 <div class="login">
   <%= link_to "ログイン", new_user_session_path , class:"btn btn-login" %>
   <%= link_to "新規登録", new_user_registration_path, class:"btn btn-signup" %>
 </div>
+
+<% end %>
+
 
 <%= form_with url: search_path, method: :get, local: true do |f| %>
   <div class="search-bar">
@@ -33,7 +34,8 @@
     <%= f.submit "検索", style: "background-color: #6B61D8; color: white; font-size: 16px; padding: 10px 30px; border: none; border-radius: 5px;" %>
   </div>
 <% end %>
-<% end %>
+
+
 
 <h2>繋がれるユーザー一覧</h2>
 <% if @users.present? %>

@@ -78,3 +78,10 @@ ja:
     failure:
       invalid: 'メールアドレスまたはパスワードが正しくありません。'
       not_found_in_database: 'メールアドレスまたはパスワードが正しくありません。'
+  activerecord:
+    models:
+      user:
+        one: "ユーザー"
+        other: "ユーザー"
+
+   
