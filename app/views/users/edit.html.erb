@@ -1,25 +1,22 @@
-#エンジニア情報編集ページ
-#プロフィール画面
-
 
 <section class="intro-wrapper">
 
-<h1>プロフィール編集</h1>
+<h1 class="page-title">プロフィール編集</h1>
 
-<div class="user-intro-wrapper">
+<div class="form-group">
 <%= form_with(model: @user, local: true) do |f| %>
-    <%= f.label :name, "ユーザー名" %>
-    <%= f.text_field :name %>
-    <%= f.label :skill, "スキル" %>
-    <%= f.text_field :skill %>
-    <%= f.label :description, "自己紹介" %>
-    <%= f.text_area :description %>
-    <%= f.submit "更新" %>
+    <p><%= f.label :name, "ユーザー名" %></p>
+    <p><%= f.text_field :name %></p>
+    <p><%= f.label :skill, "スキル" %></p>
+    <p><%= f.text_field :skill %></p>
+    <p><%= f.label :description, "自己紹介" %></p>
+    <p><%= f.text_area :description %></p>
+    <p><%= f.submit "更新" %></p>
 <% end %>
 </div>
 
-<%= link_to "戻る", user_path(@user), class: "btn btn-primary" %>
-<%= link_to "編集", edit_user_path(@user), class: "btn btn-secondary" %>
-<%= link_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<div class="back-btn">
+<%= link_to "戻る", user_path(@user), class: "btn-element" %>
+<%= button_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn-element" %>
+</div>
 
-</section>

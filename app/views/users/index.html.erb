@@ -1,16 +1,15 @@
-#マイページ
-<h2>マイページ</h2>
-<% if user_signed_in? %>
-  <p>ようこそ、<%= current_user.name %>さん！</p>
-<% else %>
+<h1 class="page-title">アカウント情報</h1>
+<section class="intro-wrapper">
+  <h2>アカウント情報</h2>
+  <div class="form-group">
+    <p>ユーザー名: <%= @user.name %></p>
+    <p>スキル: <%= @user.skill %></p>
+    <p>自己紹介: <%= @user.description %></p>
+    <p>登録日: <%= @user.created_at.strftime("%Y年%m月%d日") %></p>
+  </div>
 
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-element" %></p>
-
-
-<p>名前: <%= current_user.name %></p>
-<p>スキル: <%= current_user.skill %></p>
-<p>自己紹介: <%= current_user.description %></p>
-<p>登録日: <%= current_user.created_at.strftime("%Y/%m/%d") %></p>
-
-<%= link_to "プロフィール編集", edit_user_registration_path, class: "btn-element" %>
-<%= link_to "繋がれるユーザー一覧へ", users_path, class: "btn-element" %>
+  <div class="navigation">
+    <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-secondary" %>
+    <%= button_to "アカウント削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+  </div>
+</section>
