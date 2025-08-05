@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
     member do 
+      get :img #ユーザーの画像を取得するためのルート
       get :matches #CRUD７つの処理以外のルート設定。マッチング管理
       post "like", to: "likes#create"
       delete "unlike", to: "likes#destroy"
