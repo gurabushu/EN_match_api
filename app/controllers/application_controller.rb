@@ -4,20 +4,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  protected
-
   def configure_permitted_parameters
     # サインアップ時のパラメータ許可
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :skill, :description])
-    # サインイン時のパラメータ許可（必要なら）
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+    
+    # サインイン時のパラメータ許可（通常は name は不要）
+    # devise_parameter_sanitizer.permit(:sign_in, keys: [:name]) ← これは省略可
+    
     # アカウント編集時のパラメータ許可
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :skill, :description])
-  end
-
-  def after_sign_in_path_for(resource)
-    mypage_path # サインイン後のリダイレクト先
   end
 end

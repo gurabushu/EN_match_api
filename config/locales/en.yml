@@ -27,5 +27,24 @@
 #       "yes": yup
 #       enabled: "ON"
 
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "を入力してください"
+
+en:
+  hello: "Hello world"
+
 en:
   hello: "Hello world"
