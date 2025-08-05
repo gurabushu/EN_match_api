@@ -1,0 +1,45 @@
+<div class="page-title">
+  <h2>いいねしたユーザー一覧</h2>
+</div>
+
+<% if @likes.present? %>
+  <% @likes.each do |like| %>
+    <% user = like.liked_user %>
+    <div class="user-list">
+      <%= image_tag user.avatar.attached? ? user.avatar : "default_img.png", class: "user-avatar" %>
+      <h3>名前：<%= user.name %></h3>
+      <p>スキル: <%= user.skill %></p>
+      <p>自己紹介: <%= user.description %></p>
+      <p>年齢：<%= user.age %>歳</p>
+
+      <% if user.github.present? %>
+        <h4>GitHub: <%= link_to user.github, user.github, target: "_blank" %></h4>
+      <% else %>
+        <h4>GitHub: 未登録</h4>
+      <% end %>
+
+      <p>登録日: <%= user.created_at.strftime("%Y/%m/%d") %></p>
+
+      <div class="like-button">
+        <% if current_user && Like.exists?(liked_id: user.id, liker_id: current_user.id) %>
+          <% like = Like.find_by(liked_id: user.id, liker_id: current_user.id) %>
+          <%= button_to "いいねを取り消す", like_path(like), method: :delete, class: "btn-element-delete" %>
+        <% elsif current_user %>
+          <%= button_to "いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
+        <% end %>
+      </div>
+
+      <% if user != current_user %>
+        <%= link_to "詳細", user_path(user), class: "btn-element" %>
+      <% else %>
+        <span class="btn-element disabled">自分のプロフィール</span>
+      <% end %>
+    </div> <!-- ← user-list の閉じタグを追加 -->
+  <% end %>
+<% else %>
+  <h3>いいねしたユーザーはまだいません。</h3>
+<% end %>
+
+<div class="back-btn">
+  <%= link_to "戻る", root_path, class: "btn-element" %>
+</div>
