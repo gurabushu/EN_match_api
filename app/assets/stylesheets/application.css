@@ -159,6 +159,20 @@ h2{
     margin-right: 30px;
 }
 
+h3{
+  text-align: center;
+}
+
+.btn-element-delete{
+    background-color: #6B61D8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 .search-bar p{
     margin-right: 10px;
     font-size: 16px;
@@ -231,7 +245,6 @@ li{
 
 .form-group{
     margin-bottom: 20px;
-    display: flex;
     flex-direction: column;
     width: 500px;
     text-align: center;

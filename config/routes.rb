@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'home#logout'
 
   resources :likes, only: [:create, :destroy ] # いいねのルーティング設定
-  
+  resources :chatrooms, only: [:create, :index]
+  resources :matches, only: [:index, :create, :destroy] # マッチングのルーティング設定
+
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
     member do 
       get :img #ユーザーの画像を取得するためのルート
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
 
   get "search", to: "search#index"  # これが search_path を生成
   get "account", to: "account#show", as: :account  # アカウント情報のルート設定
-
+  get "likes", to: "likes#index"  # いいね管理のルート設定
+  get "matches", to: "matches#index"  # マッチング一覧のルート設定
 
 end

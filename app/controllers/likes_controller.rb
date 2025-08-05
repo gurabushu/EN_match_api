@@ -1,6 +1,15 @@
 class LikesController < ApplicationController
 
+  def index
+    @likes = Like.where(liker_id: current_user.id)
+  end
 
+  
+
+  def show
+    @like = User.find(params[:id])
+  end
+  
  def likes_count
   user = User.find(params[:user_id])
   likes_count = Like.where(liked_id: user.id).count
@@ -26,7 +35,6 @@ def create
     liker_id: current_user.id,
     liked_id: params[:liked_id]
   )
-
   if @like.save
     redirect_to root_path, notice: "いいねしました"
   else

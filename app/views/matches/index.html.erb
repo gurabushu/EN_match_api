@@ -1,0 +1,16 @@
+<h2>マッチング一覧</h2>
+<% if @matches.present? %>
+<% @matches.each do |match| %>
+    <h2>マッチングユーザー</h2>
+    <p>ユーザー1: <%= match.user1.name %></p>
+    <p>ユーザー2: <%= match.user2.name %></p>
+    <%= link_to "マッチングを開始する", root_path, class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+<div class="form-group">
+    <p>マッチングはありません。</p>
+   
+</div>
+
+<%= link_to "戻る", root_path, class: "btn-element" %>
+<% end %>

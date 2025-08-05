@@ -14,7 +14,8 @@
     <ul>
       <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
-      <li><%= link_to "いいね管理", root_path, class: "nav-link" %></li>
+      <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
+      <li><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></li>
       <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
     </ul>
   </nav>
