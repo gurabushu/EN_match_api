@@ -244,6 +244,7 @@ li{
 }
 
 .form-group{
+  display: flex;
     margin-bottom: 20px;
     flex-direction: column;
     width: 500px;
@@ -252,6 +253,68 @@ li{
     padding: 20px;
     border-radius: 5px;
     margin: 0 auto;
+}
+
+.button-group{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin: auto;
+} 
+
+.btn-element-chat{
+    background-color: #6B61D8;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    margin: 5px 26px;
+    display: inline-block;
+    text-align: center;
+} 
+
+.match-item{
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px auto;
+} 
+
+.match-item p{
+  margin: 18px auto;
+}
+
+.chat-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+} 
+
+.btn-element-like{
+    background-color: #6B61D8;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    margin: 5px 26px;
+    display: inline-block;
+    text-align: center;
 }
 
 .form-group input[type="text"],
@@ -263,6 +326,17 @@ li{
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
+    margin: auto;
+
+}
+
+.form-control{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin: auto;
 }
 
 

@@ -1,7 +1,19 @@
 class Match < ApplicationRecord
-  belongs_to :user1, class_name: "User"
-  belongs_to :user2, class_name: "User"
+  belongs_to :user1, class_name: "User", foreign_key: "user1_id"
+  belongs_to :user2, class_name: "User", foreign_key: "user2_id"
 
-  validates :user1_id, uniqueness: { scope: :user2_id } # 重複マッチング防止
-  validates :user2_id, uniqueness: { scope: :user1_id } # 重複マッチング防止
+  has_one :chatroom, dependent: :destroy
+
+  after_commit :create_chatroom, on: :create
+
+  private
+
+  def create_chatroom
+    Chatroom.create!(
+      match: self,
+      room: Chatroom.maximum(:room).to_i + 1,
+      user_match_1: self.user1,
+      user_match_2: self.user2
+    )
+  end
 end

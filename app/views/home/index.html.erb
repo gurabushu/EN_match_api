@@ -72,7 +72,7 @@
       <% end %>
       <h4>いいね数: <%= user.received_likes.count %></h4>
 </div>
-      <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
+      <%= button_to "詳細", user_path(user), class: "btn-element-show" %>
     </div>
   <% end %>
 <% else %>

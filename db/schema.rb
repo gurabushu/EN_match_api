@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_05_233220) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_06_111629) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,10 +41,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_233220) do
 
   create_table "chatrooms", force: :cascade do |t|
     t.integer "room"
-    t.integer "user_match_1"
-    t.integer "user_match_2"
+    t.integer "user_match_1_id"
+    t.integer "user_match_2_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "match_id", null: false
+    t.index ["match_id"], name: "index_chatrooms_on_match_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -62,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_233220) do
     t.integer "user2_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status", default: true
     t.index ["user1_id"], name: "index_matches_on_user1_id"
     t.index ["user2_id"], name: "index_matches_on_user2_id"
   end
@@ -87,6 +90,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_233220) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatrooms", "matches"
   add_foreign_key "likes", "users", column: "liked_id"
   add_foreign_key "likes", "users", column: "liker_id"
 end

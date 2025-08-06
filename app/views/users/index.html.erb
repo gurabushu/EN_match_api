@@ -12,4 +12,7 @@
     <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-secondary" %>
     <%= button_to "アカウント削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
   </div>
+  <div class="back-btn">
+    <%= link_to "戻る", root_path, class: "btn-element" %>
+  </div>
 </section>
