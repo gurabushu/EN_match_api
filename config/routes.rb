@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root "home#index"  # トップページがhome#indexになっているか確認
-
   devise_for :users
 
   get 'logout', to: 'home#logout'
 
-  resources :likes, only: [:create, :destroy ] # いいねのルーティング設定
-  resources :chatrooms, only: [:create, :index]
+  resources :likes, only: [:index, :create, :destroy ] do 
+    collection do
+      get :received # いいねをくれたユーザー一覧
+    end
+  end
+
+  resources :chatrooms, only: [:create, :index, :show]
   resources :matches, only: [:index, :create, :destroy] # マッチングのルーティング設定
 
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
@@ -22,5 +26,8 @@ Rails.application.routes.draw do
   get "account", to: "account#show", as: :account  # アカウント情報のルート設定
   get "likes", to: "likes#index"  # いいね管理のルート設定
   get "matches", to: "matches#index"  # マッチング一覧のルート設定
+  get 'likes/received', to: 'likes#received', as: 'likes_received'
+
+
 
 end

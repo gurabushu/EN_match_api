@@ -14,19 +14,18 @@
   </nav>
 </div>
 
-
 <div class="page-title">
   <h2>いいねしたユーザー/いいねをくれたユーザー一覧</h2>
 </div>
 
 <div class="button-group">
-<%= link_to "いいねをくれたユーザー一覧" , likes_received_path(@likes_received), class: "btn-element-like" %>
-<%= link_to "いいねしたユーザー一覧" , likes_path(@likes), class: "btn-element-like" %>
+<%= link_to "いいねをくれたユーザー一覧" , likes_received_path, class: "btn-element-like" %>
+<%= link_to "いいねしたユーザー一覧" , likes_path, class: "btn-element-like" %>
 </div>
 
-<% if @likes.present? %>
-  <% @likes.each do |like| %>
-    <% user = like.liked_user %>
+<% if @likes_received.present? %>
+  <% @likes_received.each do |like| %>
+    <% user = like.liker %>
     <div class="user-list">
       <%= image_tag user.avatar.attached? ? user.avatar : "default_img.png", class: "user-avatar" %>
       <h3>名前：<%= user.name %></h3>
@@ -47,7 +46,7 @@
           <% like = Like.find_by(liked_id: user.id, liker_id: current_user.id) %>
           <%= button_to "いいねを取り消す", like_path(like), method: :delete, class: "btn-element-delete" %>
         <% elsif current_user %>
-          <%= button_to"いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
+          <%= button_to "いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
         <% end %>
       </div>
 
