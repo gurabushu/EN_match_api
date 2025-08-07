@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"  # トップページがhome#indexになっているか確認
   devise_for :users
+  mount ActionCable.server => '/cable'  # Action Cableのルーティング設定
 
   get 'logout', to: 'home#logout'
 
@@ -10,8 +11,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chatrooms, only: [:create, :index, :show]
-  resources :matches, only: [:index, :create, :destroy] # マッチングのルーティング設定
+  resources :matches do
+    get 'compatibility', on: :member
+  end
+
+  resources :chatrooms, only: [:create, :index, :show] do
+    resources :messages, only: [:create, :index]  # チャットルーム内のメッセージのルーティング設定
+  end
+
+
 
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
     member do 
@@ -22,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "search", to: "search#index"  # これが search_path を生成
+  get "/search", to: "home#index"  # これが search_path を生成
   get "account", to: "account#show", as: :account  # アカウント情報のルート設定
   get "likes", to: "likes#index"  # いいね管理のルート設定
   get "matches", to: "matches#index"  # マッチング一覧のルート設定

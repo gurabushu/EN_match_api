@@ -1,0 +1,13 @@
+<% if message.sender_user == current_user %>
+  <div class="message sent" style="text-align: right;">
+    <p class="sender_" style="text-align: right;">
+      <strong>あなた:</strong> <%= message.content %>
+    </p>
+  </div>
+<% else %>
+  <div class="message received" style="text-align: left;">
+    <p class="recipient_" style="text-align: left;">
+      <strong><%= message.sender_user&.name || "未設定ユーザー" %>:</strong> <%= message.content %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<%= form_with model: [chatroom, message], remote: true, id: 'new_message' do |f| %>
+  <div class="message-form">
+    <%= f.text_field :content, placeholder: "メッセージを入力", autofocus: true %>
+    <%= f.submit "送信", class: 'btn-element-chat' %>
+  </div>
+<% end %>

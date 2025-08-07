@@ -5,12 +5,20 @@
 <% end %>
 
 <% if user_signed_in? %>
+
 <div class="header-nav-wrapper">
   <header class="header-top-login">
     <h1>エンジニア同士がスキルで<br>繋がれるマッチングアプリ</h1>
   </header>
   <nav class="nav-bar">
-  <p>ようこそ、<%= current_user.name %>さん</p>
+  <p class="icon-bar">ようこそ!
+    <% if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar, alt: "User Avatar", class: "user-avatar" %>
+    <% else %>
+      <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar" %>
+    <% end %>
+    <%= current_user.name %>さん
+  </p>
     <ul>
       <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
@@ -33,13 +41,16 @@
   <div class="search-bar">
     <p>フリーワード検索：<%= f.text_field :search, placeholder: "フリーワード検索" %></p>
     <p>スキルで検索：<%= f.text_field :skill, placeholder: "スキルで検索" %></p>
-    <%= f.submit "検索", style: "background-color: #6B61D8; color: white; font-size: 16px; padding: 10px 30px; border: none; border-radius: 5px;" %>
+    <%= f.submit "検索", class: "btn-element-search" %>
+    <%= link_to "リセット", root_path,class: "btn-element", data: { turbo: false } %>
   </div>
+
 <% end %>
 
 
-
 <h2>繋がれるユーザー一覧</h2>
+<p class="users-count">ユーザ数：<%= @users.count %>件</p>
+
 <% if @users.present? %>
   <% @users.each do |user| %>
 
@@ -50,7 +61,7 @@
         </div>
     <div class="user-info">
       <h3>名前：<%= user.name %></h3>
-      <p>スキル: <%= user.skill %></p>
+      <p class="skills">スキル: <%= user.skill %></p>
       <p>自己紹介: <%= user.description %></p>
       <p>年齢：<%= user.age %>歳</p>
       <% if user.github.present? %>
@@ -72,7 +83,7 @@
       <% end %>
       <h4>いいね数: <%= user.received_likes.count %></h4>
 </div>
-      <%= button_to "詳細", user_path(user), class: "btn-element-show" %>
+      <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
     </div>
   <% end %>
 <% else %>
