@@ -18,8 +18,7 @@
 
 <% @matches.each do |match| %>
   <div class="match-item">
-    <h3><%= match.user1.name %> と <%= match.user2.name %>がマッチしました!</h3>
-    <p>ステータス: <%= match.status ? "マッチ済み!" : "未マッチ" %></p>
+    <h3><%= match.user1.name %> と <%= match.user2.name %>が<span class="match-status">マッチしました</span>!</h3>
     <p>マッチング日時: <%= match.created_at.strftime("%Y/%m/%d %H:%M") %></p>
 
     <div class="chat-button">

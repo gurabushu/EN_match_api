@@ -18,6 +18,9 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 
+gem 'redis', '~> 5.0'
+
+
 # Gemfile
 gem 'rails-i18n'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

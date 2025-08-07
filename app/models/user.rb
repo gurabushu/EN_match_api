@@ -5,11 +5,11 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
 
-  # 自分が送ったいいね
   has_many :given_likes, class_name: "Like", foreign_key: "liker_id", dependent: :destroy
-
-  # 自分が受け取ったいいね
   has_many :received_likes, class_name: "Like", foreign_key: "liked_id", dependent: :destroy
+  has_many :chatrooms_as_user1, class_name: "Chatroom", foreign_key: "user_match_1_id", dependent: :destroy
+  has_many :chatrooms_as_user2, class_name: "Chatroom", foreign_key: "user_match_2_id", dependent: :destroy
+  has_many :messages, dependent: :destroy
 
 has_many :likes, foreign_key: :liker_id
 has_many :liked_users, through: :likes, source: :liked_user

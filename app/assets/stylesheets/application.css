@@ -9,6 +9,36 @@ a{
     color: inherit;
 }
 
+.message-recipient{
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  max-width: 300px;
+  display: block;
+  margin-top: 20px;
+}
+
+.message{
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  background-color: #b7b2eb;
+  max-width: 450px;
+  display: block;
+  margin-top: 20px;
+  text-align: left;
+  margin: 20px auto;
+
+    
+}
+
+
+
 .user-avatar{
     width: 80px;
     height: 80px;
@@ -217,7 +247,7 @@ li{
     border-radius: 5px;
     cursor: pointer;
     color: black;
-     text-decoration: none;
+    text-decoration: none;
     margin-left: 16px;
     margin: 18px 28px;
 
@@ -255,12 +285,85 @@ li{
     margin: 0 auto;
 }
 
+.message-form input[type="text"]{
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin: auto;
+}
+
+
+.btn-element-search{
+    background-color: #6B61D8;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    margin-left: 16px;
+    margin: 18px 28px;
+}
+
+
+.users-count{
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #333;;
+}
+
+.match-status{
+    color: #6B61D8;
+    font-weight: bold;
+}
+
+.no-chatrooms{
+    text-align: center;
+    margin-top: 90px;
+}
+
+.senser_{
+  text-align: right;
+}
+
+#messages{
+    width: 800px;
+    max-height: 1500px;
+    padding: 10px;
+    border: 4px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin: 20px auto;
+}
+
 .button-group{
     display: flex;
     justify-content: center;
     margin-top: 20px;
     margin: auto;
 } 
+
+.message-form{
+    align-items: center;
+    margin-top: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.chatroom-item{
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px auto;
+}
 
 .btn-element-chat{
     background-color: #6B61D8;

@@ -33,13 +33,16 @@
   <div class="search-bar">
     <p>フリーワード検索：<%= f.text_field :search, placeholder: "フリーワード検索" %></p>
     <p>スキルで検索：<%= f.text_field :skill, placeholder: "スキルで検索" %></p>
-    <%= f.submit "検索", style: "background-color: #6B61D8; color: white; font-size: 16px; padding: 10px 30px; border: none; border-radius: 5px;" %>
+    <%= f.submit "検索", class: "btn-element-search" %>
+    <%= link_to "リセット", root_path,class: "btn-element", data: { turbo: false } %>
   </div>
+
 <% end %>
 
 
-
 <h2>繋がれるユーザー一覧</h2>
+<p class="users-count">ユーザ数：<%= @users.count %>件</p>
+
 <% if @users.present? %>
   <% @users.each do |user| %>
 
