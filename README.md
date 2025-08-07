@@ -1,24 +1,131 @@
-# README
+# スキルで繋がるエンジニアのためのマッチングWEBアプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## １、サービス概要
+学習者、現役のエンジニア、フリーランスを目指す人、もしくはフリーランスの人。
+そんなエンジニアたちのための情報交換のためのツールです。
 
-* Ruby version
 
-* System dependencies
+## ２、サービス画像
 
-* Configuration
+<img width="1470" height="795" alt="スクリーンショット 2025-08-07 22 03 21" src="https://github.com/user-attachments/assets/a4cec73f-3260-48c0-bf40-c635be4e4399" />
+<img width="1470" height="795" alt="スクリーンショット 2025-08-07 22 00 59" src="https://github.com/user-attachments/assets/c7600479-476a-413d-be99-483b10113a3e" />
 
-* Database creation
+---
 
-* Database initialization
+## 3、サービスURL
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## ５、開発の背景
+元々マッチング形式のビズネスモデルの制作物を作ろうと考えておりました。
+近年、表立って活躍するサービスが双方のマッチング形式を採用しているものが多いと感じたためです。
+エンジニアは勉強熱心な人が多く、またエンジニア同士の横のつながりによってモチベーションの維持や
+自身のキャリアの展望、スキルの共有会など生まれるものが多いと感じたため、エンジニア向けの
+マッチングアプリに路線を定めました。
+また、今後のスキル向上を見据えAI相性マッチング機能を実装しました。
 
-* ...
+
+---
+
+
+## ６,機能
+
+### ホーム画面
+
+・ログアウト状態
+登録ユーザーの一覧
+
+ログイン、新規登録、ゲストユーザー
+
+・ログイン状態
+ヘッダー
+
+アカウント情報照会
+
+
+プロフィール照会
+
+
+いいね一覧  いいねしたユーザー/いいねしてくれたユーザー
+
+
+AIによる相性診断
+
+
+マッチング/チャットルーム画面
+
+
+
+### プロフィール画面
+
+
+・閲覧/編集（名前、アイコン画像、自己紹介、githubのURL、スキル、年齢）
+
+
+### アカウント情報
+
+
+・閲覧/編集（メアド、パスワード）
+
+
+---
+
+## 7、主な技術
+
+フロントエンド
+
+・HTML/CSS/Javascript/json
+・レスポンシブ
+
+バックエンド
+
+・CRUD処理
+
+・ルビー3.3.3
+
+・Ruby on rails 8
+
+・PostgreSQL
+
+・OpenAI API（GEMINI）
+
+・devise
+
+・ActiveStorage
+
+
+インフラ・環境構築
+
+・Git/Github
+
+・Heroku
+
+---
+
+## ER図
+
+---
+
+## 8,私の展望
+
+### 短期的な目標
+
+・AIの相性表示のUIを改善。
+
+
+
+
+---
+
+### 中期的な目標
+
+・チャット申請の機能の実装
+
+・通知機能実装
+
+
+
+
+
