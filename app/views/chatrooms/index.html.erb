@@ -4,26 +4,35 @@
     <h1>エンジニア同士がスキルで<br>繋がれるマッチングアプリ</h1>
   </header>
   <nav class="nav-bar">
-  <p>ようこそ、<%= current_user.name %>さん</p>
+    <p class="icon-bar">ようこそ!
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar, alt: "User Avatar", class: "user-avatar" %>
+      <% else %>
+        <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar" %>
+      <% end %>
+      <%= current_user.name %>さん
+    </p>
     <ul>
-      <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
+      <li><%= link_to "アカウント情報", account_path, class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
       <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
       <li><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></li>
-      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
+      <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %></li>
     </ul>
   </nav>
 </div>
 
-
 <h2>チャットルーム一覧</h2>
+
 <% if @chatrooms.any? %>
   <ul>
     <% @chatrooms.each do |chatroom| %>
-      <li class="chatroom-item">
-        <%= link_to "チャットルーム #{chatroom.id}", chatroom_path(chatroom), class: "btn-element-chat" %>
-        <span><%= chatroom.user_match_1.name %> と <%= chatroom.user_match_2.name %>さんのチャット</span>
-      </li>
+      <% if current_user == chatroom.user_match_1 || current_user == chatroom.user_match_2 %>
+        <li class="chatroom-item">
+          <%= link_to "room #{chatroom.id}", chatroom_path(chatroom), class: "btn-element-chat" %>
+          <span><%= chatroom.user_match_1.name %> と <%= chatroom.user_match_2.name %>さんのチャット</span>
+        </li>
+      <% end %>
     <% end %>
   </ul>
   <p class="no-chatrooms">他のチャットルームはありません。</p>
@@ -31,4 +40,4 @@
   <p class="no-chatrooms">チャットルームはありません。</p>
 <% end %>
 
-<%= link_to "戻る", root_path, class:"btn-element" %>
+<%= link_to "戻る", root_path, class: "btn-element" %>

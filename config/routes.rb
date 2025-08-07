@@ -11,11 +11,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :matches do
+    get 'compatibility', on: :member
+  end
+
   resources :chatrooms, only: [:create, :index, :show] do
     resources :messages, only: [:create, :index]  # チャットルーム内のメッセージのルーティング設定
   end
 
-  resources :matches, only: [:index, :create, :destroy] # マッチングのルーティング設定
+
 
   resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
     member do 

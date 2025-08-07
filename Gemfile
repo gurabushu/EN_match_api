@@ -17,9 +17,12 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "openai", "~> 0.1.0"  # OpenAI API client gem
+
+gem 'dotenv-rails'
+
 
 gem 'redis', '~> 5.0'
-
 
 # Gemfile
 gem 'rails-i18n'
@@ -69,5 +72,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "devise-i18n", "~> 1.14"

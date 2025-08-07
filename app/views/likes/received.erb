@@ -27,8 +27,10 @@
   <% @likes_received.each do |like| %>
     <% user = like.liker %>
     <div class="user-list">
+    <div class="name-img-wrapper">
       <%= image_tag user.avatar.attached? ? user.avatar : "default_img.png", class: "user-avatar" %>
       <h3>名前：<%= user.name %></h3>
+    </div>
       <p>スキル: <%= user.skill %></p>
       <p>自己紹介: <%= user.description %></p>
       <p>年齢：<%= user.age %>歳</p>

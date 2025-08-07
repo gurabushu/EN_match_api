@@ -1,3 +1,5 @@
+
+
 body{
     padding: 0;
     margin: 0;
@@ -7,6 +9,11 @@ body{
 a{
     text-decoration: none;
     color: inherit;
+}
+
+.skills{
+  font-weight: bold;
+  color: #6B61D8;
 }
 
 .message-recipient{
@@ -21,20 +28,29 @@ a{
   margin-top: 20px;
 }
 
-.message{
-  padding-left: 20px;
-  padding-right: 20px;
+
+/* Base style for all messages */
+.message {
+  padding: 10px 15px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  margin-bottom: 10px;
-  background-color: #b7b2eb;
-  max-width: 450px;
-  display: block;
-  margin-top: 20px;
+  margin: 10px 0;
   text-align: left;
-  margin: 20px auto;
+  display: inline-block;
+  max-width: 70%;
+  /* Remove background-color here to allow variants */
+}
 
-    
+.message.sent {
+  background-color: #b7b2eb;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.message.received {
+  background-color: #e4e4e4;
+  align-self: flex-start;
+  margin-right: auto;
 }
 
 
@@ -338,6 +354,8 @@ li{
     border-radius: 5px;
     margin-bottom: 10px;
     margin: 20px auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .button-group{
@@ -363,6 +381,9 @@ li{
     max-width: 600px;
     text-align: center;
     margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-element-chat{
@@ -376,7 +397,7 @@ li{
     text-decoration: none;
     margin: 5px 26px;
     display: inline-block;
-    text-align: center;
+    text-align: left;
 } 
 
 .match-item{
@@ -398,6 +419,85 @@ li{
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.match-item h3{
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+    margin-left: 16px;
+    margin-right: 0;
+}
+
+
+
+
+.chat-button button{
+    background-color:#D9D9D9;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;}
+
+.chat-button a {
+    background-color: #6B61D8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    margin-right: 10px;
+    margin: auto;
+
+}
+
+.compatibility-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.compatibility-header{
+    text-align: center;
+}
+
+.name-img-wrapper{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+.icon-bar {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+}
+
+.icon-bar img {
+    margin-right: 5px;
+    margin-left: 28px;
+}
+
+.user-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
 }
 
 .navigation{

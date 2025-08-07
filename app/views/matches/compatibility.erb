@@ -1,0 +1,30 @@
+<h2>AIによる相性診断</h2>
+
+<div class="compatibility-header">
+<div class="compatibility-content">
+  <h3>相性診断結果</h3>
+  <p>以下のユーザー同士の相性を診断します。</p>
+
+  <div class="user-info">
+    <div class="user-details">
+      <%= image_tag @user1.avatar.attached? ? @user1.avatar : "default_img.png", class: "user-avatar" %>
+      <h4><%= @user1.name %></h4>
+    </div>
+    <div class="user-details">
+      <%= image_tag @user2.avatar.attached? ? @user2.avatar : "default_img.png", class: "user-avatar" %>
+      <h4><%= @user2.name %></h4>
+    </div>
+  </div>
+</div>
+
+  <% if @compatibility_result.present? && !@compatibility_result.include?("取得できませんでした") %>
+    <h3>診断結果</h3>
+    <p><%= simple_format(@compatibility_result) %></p>
+  <% elsif @compatibility_result.blank? %>
+    <p class="text-danger">診断結果が空です。Gemini API からの応答を確認してください。</p>
+  <% else %>
+    <p class="text-danger">診断結果の取得に失敗しました。もう一度お試しください。</p>
+  <% end %>
+</div>
+
+<%= link_to "マッチ一覧へ戻る", matches_path, class: "btn btn-primary" %>
