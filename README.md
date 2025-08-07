@@ -95,6 +95,8 @@ AIによる相性診断
 
 ・ActiveStorage
 
+・RSpec
+
 
 インフラ・環境構築
 
