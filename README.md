@@ -9,7 +9,6 @@
 ## ２、サービス画像
 
 <img width="1470" height="795" alt="スクリーンショット 2025-08-07 22 03 21" src="https://github.com/user-attachments/assets/a4cec73f-3260-48c0-bf40-c635be4e4399" />
-<img width="1470" height="795" alt="スクリーンショット 2025-08-07 22 00 59" src="https://github.com/user-attachments/assets/c7600479-476a-413d-be99-483b10113a3e" />
 
 ---
 
@@ -35,6 +34,7 @@
 ### ホーム画面
 
 ・ログアウト状態
+
 登録ユーザーの一覧
 
 ログイン、新規登録、ゲストユーザー
