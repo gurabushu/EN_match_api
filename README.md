@@ -105,7 +105,8 @@ AIによる相性診断
 ---
 
 ## ER図
-![Uploading rails_newmatch_EN　　ER図.png…]()
+<img width="1166" height="659" alt="rails_newmatch_EN　　ER図" src="https://github.com/user-attachments/assets/8b4108ca-87b6-48a4-be84-a677fa5268b0" />
+
 
 ---
 
