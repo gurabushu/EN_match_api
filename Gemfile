@@ -23,9 +23,6 @@ gem "jbuilder"
 # gem 'sqlite3', '~> 1.4'
 
 # 本番用にpgを使う
-group :production do
-  gem 'pg'
-end
 
 gem "openai", "~> 0.1.0"  # OpenAI API client gem
 
