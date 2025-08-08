@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'  # Action Cableのルーティング設定
 
   get 'logout', to: 'home#logout'
+  post 'users/guest_sign_in', to: 'users#guest_sign_in'
 
   resources :likes, only: [:index, :create, :destroy ] do 
     collection do

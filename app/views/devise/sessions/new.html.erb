@@ -29,6 +29,12 @@
   </div>
 <% end %>
 
+<div class="guest-login">
+  <%= form_with url: users_guest_sign_in_path, method: :post, local: true do |f| %>
+    <%= f.submit "ゲストユーザーとしてログイン", class: "btn-guest" %>
+  <% end %>
+</div>
+
 
 <div class="back">
 <%= link_to "パスワードを忘れましたか？", new_password_path(resource_name) %><br/>

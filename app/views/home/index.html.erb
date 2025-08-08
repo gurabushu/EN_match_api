@@ -32,6 +32,9 @@
 <div class="login">
   <%= link_to "ログイン", new_user_session_path , class:"btn btn-login" %>
   <%= link_to "新規登録", new_user_registration_path, class:"btn btn-signup" %>
+  <%= form_with url: users_guest_sign_in_path, method: :post, local: true, class: "guest-form" do |f| %>
+    <%= f.submit "ゲストログイン", class: "btn-signup" %>
+  <% end %>
 </div>
 
 <% end %>
