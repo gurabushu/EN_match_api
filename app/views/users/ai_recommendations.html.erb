@@ -22,7 +22,9 @@
       <div class="ai-compatibility-result" style="margin-top: 10px;">
         <%= rec[:detail].gsub("\n", "<br>").html_safe %>
       </div>
-      <%= link_to "詳細", user_path(rec[:user]), class: "btn-element" %>
+      <div style="margin-top: 20px;">
+        <%= link_to "詳細", user_path(rec[:user]), class: "btn-element" %>
+      </div>
     </div>
   <% end %>
 <% else %>
