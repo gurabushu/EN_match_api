@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: your_app_development
+  database: rails_newmatch_EN_development
 
 test:
   <<: *default
-  database: your_app_test
+  database: rails_newmatch_EN_test
 
 production:
   <<: *default
