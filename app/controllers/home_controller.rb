@@ -11,6 +11,8 @@ class HomeController < ApplicationController
     if params[:skill].present?
       @users = @users.where("skill LIKE ?", "%#{params[:skill]}%")
     end
+
+    @users = @users.limit(3)
   end
 
   def show

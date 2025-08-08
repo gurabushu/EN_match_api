@@ -1,5 +1,29 @@
+
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
+    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show, :ai_recommendations]
+
+    # AIでおすすめユーザー（高相性ユーザー）一覧
+    def ai_recommendations
+      @users = User.where.not(id: current_user.id).order(created_at: :desc).limit(10)
+      Rails.logger.info "[AIおすすめ] 対象ユーザー数: #{@users.size}"
+      @recommendations = []
+      @users.each do |user|
+        result = GeminiService.analyze_compatibility(current_user, user)
+        if result =~ /相性スコア: (\d+)点/
+          score = $1.to_i
+          @recommendations << { user: user, score: score, detail: result }
+        else
+          Rails.logger.warn "[AIおすすめ] スコア抽出失敗: user_id=#{user.id}, result=#{result.inspect}"
+          # スコア抽出失敗時も強制的に60点で追加
+          @recommendations << { user: user, score: 60, detail: result.presence || '🎯 相性スコア: 60点\n（モック診断）' }
+        end
+      end
+      Rails.logger.info "[AIおすすめ] 推薦候補数(抽出前): #{@recommendations.size}"
+      @recommendations.select! { |rec| rec[:score] >= 40 }
+      Rails.logger.info "[AIおすすめ] 推薦候補数(40点以上): #{@recommendations.size}"
+      @recommendations.sort_by! { |rec| -rec[:score] }
+      @recommendations = @recommendations.first(3)
+    end
 
     def index
         @users = User.all

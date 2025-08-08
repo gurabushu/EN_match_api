@@ -20,6 +20,8 @@
     <%= current_user.name %>さん
   </p>
     <ul>
+      <li><%= link_to "繋がれるユーザー一覧", root_path, class: "nav-link" %></li>
+      <li><%= link_to "AIでおすすめユーザーを見る", ai_recommendations_users_path, class: "nav-link" %></li>
       <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
       <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
@@ -87,6 +89,7 @@
       <h4>いいね数: <%= user.received_likes.count %></h4>
 </div>
       <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
+
     </div>
   <% end %>
 <% else %>

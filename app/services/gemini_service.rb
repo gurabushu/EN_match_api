@@ -15,6 +15,10 @@ class GeminiService
       return generate_mock_compatibility(user1, user2)
     end
 
+    # 念のため返り値がnilや空文字列の場合はモック診断を返す
+    result = generate_mock_compatibility(user1, user2) if result.nil? || result.to_s.strip.empty?
+    result
+
     uri = URI("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent")
     headers = { "Content-Type" => "application/json" }
 
@@ -233,8 +237,7 @@ class GeminiService
   end
 
   def self.calculate_basic_compatibility(user1, user2)
-    score = 50 # ベーススコア
-    
+    score = 60 # ベーススコア（最低スコアを60点に引き上げ）
     # 年齢差による調整
     if user1.age.present? && user2.age.present?
       age_diff = (user1.age - user2.age).abs
@@ -245,23 +248,20 @@ class GeminiService
                else 5
                end
     end
-
     # 自己紹介文の長さによる調整
     if user1.description.present? && user2.description.present?
       score += 15
     elsif user1.description.present? || user2.description.present?
       score += 8
     end
-
     # GitHubアカウントの有無による調整
     if user1.github.present? && user2.github.present?
       score += 10
     elsif user1.github.present? || user2.github.present?
       score += 5
     end
-
-    # スコアを100点満点に調整
-    [score, 100].min
+    # スコアを95点満点に調整（100点は出さない）
+    [score, 95].min
   end
 
   def self.get_tech_compatibility_comment(user1, user2)
