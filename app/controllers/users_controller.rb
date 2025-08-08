@@ -18,7 +18,7 @@
     @recommendations.sort_by! { |rec| -rec[:score] }
   end
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
+    before_action :authenticate_user!, only: [:edit, :update, :destroy, :show, :ai_recommendations]
 
     def index
         @users = User.all

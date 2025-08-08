@@ -1,6 +1,16 @@
 
 Rails.application.routes.draw do
-  get 'ai_recommendations', to: 'users#ai_recommendations', as: :ai_recommendations
+  resources :users, only: [:index, :show, :edit, :update] do
+    collection do
+      get :ai_recommendations
+    end
+    member do
+      get :img #ユーザーの画像を取得するためのルート
+      get :matches #CRUD７つの処理以外のルート設定。マッチング管理
+      post "like", to: "likes#create"
+      delete "unlike", to: "likes#destroy"
+    end
+  end
   root "home#index"  # トップページがhome#indexになっているか確認
   devise_for :users
   mount ActionCable.server => '/cable'  # Action Cableのルーティング設定
@@ -24,14 +34,6 @@ Rails.application.routes.draw do
 
 
 
-  resources :users, only: [:index, :show, :edit, :update,] do #認証とは別のルート
-    member do 
-      get :img #ユーザーの画像を取得するためのルート
-      get :matches #CRUD７つの処理以外のルート設定。マッチング管理
-      post "like", to: "likes#create"
-      delete "unlike", to: "likes#destroy"
-    end
-  end
 
   get "/search", to: "home#index"  # これが search_path を生成
   get "account", to: "account#show", as: :account  # アカウント情報のルート設定
