@@ -15,6 +15,10 @@ class GeminiService
       return generate_mock_compatibility(user1, user2)
     end
 
+    # 念のため返り値がnilや空文字列の場合はモック診断を返す
+    result = generate_mock_compatibility(user1, user2) if result.nil? || result.to_s.strip.empty?
+    result
+
     uri = URI("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent")
     headers = { "Content-Type" => "application/json" }
 
