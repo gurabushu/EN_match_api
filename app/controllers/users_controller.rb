@@ -1,3 +1,18 @@
+  # AIでおすすめユーザー（高相性ユーザー）一覧
+  def ai_recommendations
+    @users = User.where.not(id: current_user.id)
+    @recommendations = []
+    @users.each do |user|
+      result = GeminiService.analyze_compatibility(current_user, user)
+      if result =~ /相性スコア: (\d+)点/
+        score = $1.to_i
+        @recommendations << { user: user, score: score, detail: result }
+      end
+    end
+    # スコア順で降順ソートし、上位のみ表示（例: 70点以上）
+    @recommendations.select! { |rec| rec[:score] >= 70 }
+    @recommendations.sort_by! { |rec| -rec[:score] }
+  end
 class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
 

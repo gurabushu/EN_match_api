@@ -1,0 +1,32 @@
+<h2>AIおすすめユーザー（高相性のみ）</h2>
+<% if @recommendations.present? %>
+  <% @recommendations.each do |rec| %>
+    <div class="user-list">
+      <div class="name-img-wrapper">
+        <div class="user-img">
+          <%= image_tag rec[:user].avatar.attached? ? rec[:user].avatar : "default_img.png", class: "user-avatar" %>
+        </div>
+        <div class="user-info">
+          <h3>名前：<%= rec[:user].name %></h3>
+          <p class="skills">スキル: <%= rec[:user].skill %></p>
+          <p>自己紹介: <%= rec[:user].description %></p>
+          <p>年齢：<%= rec[:user].age %>歳</p>
+          <% if rec[:user].github.present? %>
+            <h4>GitHub: <%= link_to rec[:user].github, rec[:user].github, target: "_blank" %></h4>
+          <% else %>
+            <h4>GitHub: 未登録</h4>
+          <% end %>
+          <p>登録日: <%= rec[:user].created_at.strftime("%Y/%m/%d") %></p>
+        </div>
+      </div>
+      <div class="ai-compatibility-result" style="margin-top: 10px;">
+        <%= rec[:detail].gsub("\n", "<br>").html_safe %>
+      </div>
+      <%= link_to "詳細", user_path(rec[:user]), class: "btn-element-show" %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="no-users">
+    <h4>高相性のユーザーが見つかりませんでした</h4>
+  </div>
+<% end %>
