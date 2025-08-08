@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+
 Rails.application.routes.draw do
   get 'ai_recommendations', to: 'users#ai_recommendations', as: :ai_recommendations
   root "home#index"  # トップページがhome#indexになっているか確認
