@@ -20,6 +20,7 @@
     <%= current_user.name %>さん
   </p>
     <ul>
+      <li><%= link_to "繋がれるユーザー一覧", root_path, class: "nav-link" %></li>
       <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
       <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
       <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
@@ -87,6 +88,13 @@
       <h4>いいね数: <%= user.received_likes.count %></h4>
 </div>
       <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
+
+      <% if user_signed_in? && current_user.id != user.id %>
+        <div class="ai-compatibility-result" style="margin-top: 10px;">
+          <%# AI相性診断結果を表示 %>
+          <%= GeminiService.analyze_compatibility(current_user, user).gsub("\n", "<br>").html_safe %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% else %>
