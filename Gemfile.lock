@@ -429,7 +429,7 @@ DEPENDENCIES
   jbuilder
   kamal
   openai (~> 0.1.0)
-  pg
+  pg (~> 1.4)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)

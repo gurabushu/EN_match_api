@@ -24,9 +24,8 @@ gem "jbuilder"
 
 gem "openai", "~> 0.1.0"  # OpenAI API client gem
 
-group :development, :test do
-  gem 'dotenv-rails'
-end
+gem 'dotenv-rails', '~> 3.0'
+
 group :development, :test do
   gem 'rspec-rails'
 end
@@ -62,9 +61,7 @@ gem "thruster", require: false
 # Gemfile
 
 
-group :production do
-  gem 'pg'
-end
+gem 'pg', '~> 1.4'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
