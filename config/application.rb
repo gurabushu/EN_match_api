@@ -1,6 +1,6 @@
 require_relative "boot"
 require "rails/all"
-require "dotenv/load"  # ✅ 推奨
+require "dotenv/rails"
 
 Dotenv::Railtie.load if defined?(Dotenv)
 

@@ -13,10 +13,4 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  database: <%= ENV['PGDATABASE'] %>
-  username: <%= ENV['PGUSER'] %>
-  password: <%= ENV['PGPASSWORD'] %>
-  host: <%= ENV['PGHOST'] %>
-  port: <%= ENV['PGPORT'] %>
+  url: <%= ENV['DATABASE_URL'] %>
