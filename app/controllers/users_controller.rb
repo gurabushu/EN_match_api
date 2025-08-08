@@ -10,6 +10,8 @@
         @recommendations << { user: user, score: score, detail: result }
       else
         Rails.logger.warn "[AIおすすめ] スコア抽出失敗: user_id=#{user.id}, result=#{result.inspect}"
+        # スコア抽出失敗時も強制的に60点で追加
+        @recommendations << { user: user, score: 60, detail: result.presence || '🎯 相性スコア: 60点\n（モック診断）' }
       end
     end
     Rails.logger.info "[AIおすすめ] 推薦候補数(抽出前): #{@recommendations.size}"
