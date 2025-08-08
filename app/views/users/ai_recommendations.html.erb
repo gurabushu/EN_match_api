@@ -22,7 +22,7 @@
       <div class="ai-compatibility-result" style="margin-top: 10px;">
         <%= rec[:detail].gsub("\n", "<br>").html_safe %>
       </div>
-      <%= link_to "詳細", user_path(rec[:user]), class: "btn-element-show" %>
+      <%= link_to "詳細", user_path(rec[:user]), class: "btn-element" %>
     </div>
   <% end %>
 <% else %>
@@ -30,3 +30,5 @@
     <h4>高相性のユーザーが見つかりませんでした</h4>
   </div>
 <% end %>
+
+<%= link_to "戻る", root_path, class: "btn-element"  class="btn-element" %>
