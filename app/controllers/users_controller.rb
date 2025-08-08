@@ -1,6 +1,6 @@
   # AIでおすすめユーザー（高相性ユーザー）一覧
   def ai_recommendations
-    @users = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user.id).order(created_at: :desc).limit(10)
     Rails.logger.info "[AIおすすめ] 対象ユーザー数: #{@users.size}"
     @recommendations = []
     @users.each do |user|
