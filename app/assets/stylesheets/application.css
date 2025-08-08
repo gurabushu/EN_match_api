@@ -1,5 +1,10 @@
 
 
+
+
+
+
+
 body{
     padding: 0;
     margin: 0;
@@ -688,3 +693,124 @@ h2{
 
 }
 
+
+
+@media screen and (max-width: 768px) {
+    .header-nav-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .header-top-login {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .user-info h4 {
+        text-align: center;
+    }
+    
+    .message-recipient {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .like-button {
+        flex-direction: column;
+        align-items: center;
+    }
+    .like-button button {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .btn-element-show, .btn-element-like {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .btn-element-search {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .message-form input[type="text"] {
+        width: 100%;
+    }
+    .chatroom-item, .match-item {
+        max-width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+    }
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .icon-bar {
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .icon-bar img {
+        margin: 0 5px;
+    }
+    .compatibility-content {
+        max-width: 100%;
+        padding: 10px;
+    }
+    .compatibility-header {
+        text-align: center;
+    }
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-element-like {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-bar p {
+        margin-right: 0;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group {
+        width: auto;
+        padding: 10px;
+    }
+
+    .chat-button {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .message-form {
+        width: 100%;
+        margin: 10px 0; 
+    }
+
+
+}
