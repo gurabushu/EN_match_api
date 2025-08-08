@@ -1,0 +1,205 @@
+<div class="header-nav-wrapper">
+  <header class="header-top-login">
+    <h1>AI相性診断結果</h1>
+  </header>
+  <nav class="nav-bar">
+    <p class="icon-bar">ようこそ!
+      <% if current_user.avatar.attached? %>
+        <%= image_tag url_for(current_user.avatar), alt: "User Avatar", class: "user-avatar" %>
+      <% else %>
+        <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar" %>
+      <% end %>
+      <%= current_user.name %>さん
+    </p>
+    <ul>
+      <li><%= link_to "アカウント情報", account_path, class: "nav-link" %></li>
+      <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
+      <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
+      <li><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></li>
+      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
+    </ul>
+  </nav>
+</div>
+
+<div class="compatibility-container">
+  <h2 class="page-title">AI相性診断結果</h2>
+  
+  <div class="users-comparison">
+    <div class="user-info">
+      <h3><%= @current_user.name %></h3>
+      <% if @current_user.avatar.attached? %>
+        <%= image_tag url_for(@current_user.avatar), alt: "#{@current_user.name} Avatar", class: "user-avatar-large" %>
+      <% else %>
+        <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar-large" %>
+      <% end %>
+      <p class="user-description"><%= truncate(@current_user.description, length: 100) %></p>
+    </div>
+    
+    <div class="vs-indicator">
+      <span class="vs-text">VS</span>
+    </div>
+    
+    <div class="user-info">
+      <h3><%= @other_user.name %></h3>
+      <% if @other_user.avatar.attached? %>
+        <%= image_tag url_for(@other_user.avatar), alt: "#{@other_user.name} Avatar", class: "user-avatar-large" %>
+      <% else %>
+        <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar-large" %>
+      <% end %>
+      <p class="user-description"><%= truncate(@other_user.description, length: 100) %></p>
+    </div>
+  </div>
+
+  <div class="compatibility-result">
+    <h3>診断結果</h3>
+    <div class="result-content">
+      <% if @compatibility_result.present? %>
+        <pre class="ai-result"><%= @compatibility_result %></pre>
+      <% else %>
+        <p class="error-message">診断結果を取得できませんでした。しばらく時間をおいて再度お試しください。</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <%= link_to "マッチング一覧に戻る", matches_path, class: "btn-element" %>
+    <% if @match.chatroom.present? %>
+      <%= link_to "チャットを開始", chatroom_path(@match.chatroom), class: "btn-element-chat" %>
+    <% end %>
+  </div>
+</div>
+
+<style>
+.compatibility-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.users-comparison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.user-info {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-info h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.user-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #007bff;
+}
+
+.user-description {
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.4;
+}
+
+.vs-indicator {
+  flex: 0 0 60px;
+  text-align: center;
+}
+
+.vs-text {
+  font-size: 2em;
+  font-weight: bold;
+  color: #007bff;
+  background: white;
+  padding: 10px;
+  border-radius: 50%;
+  border: 3px solid #007bff;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  line-height: 36px;
+}
+
+.compatibility-result {
+  margin: 30px 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.compatibility-result h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5em;
+}
+
+.result-content {
+  text-align: center;
+}
+
+.ai-result {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.6;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.error-message {
+  color: #dc3545;
+  font-style: italic;
+}
+
+.action-buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.action-buttons .btn-element,
+.action-buttons .btn-element-chat {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .users-comparison {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .vs-indicator {
+    order: -1;
+    margin: 10px 0;
+  }
+  
+  .user-info {
+    width: 100%;
+  }
+  
+  .action-buttons .btn-element,
+  .action-buttons .btn-element-chat {
+    display: block;
+    margin: 10px auto;
+    width: 200px;
+  }
+}
+</style>

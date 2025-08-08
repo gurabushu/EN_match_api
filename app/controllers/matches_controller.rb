@@ -34,15 +34,21 @@ end
   end
 
 def compatibility
-  match = Match.find_by(id: params[:id])
-  if match.nil?
+  @match = Match.find_by(id: params[:id])
+  if @match.nil?
     redirect_to matches_path, alert: "対象マッチングが存在しません。" and return
   end
 
-  @user1 = match.user1
-  @user2 = current_user
+  # 現在のユーザーと相手ユーザーを正しく取得
+  @current_user = current_user
+  @other_user = (@match.user1 == current_user) ? @match.user2 : @match.user1
 
-  @compatibility_result = GeminiService.analyze_compatibility(@user1, @user2)
+  # 両方のユーザーが自己紹介文を持っているかチェック
+  if @current_user.description.blank? || @other_user.description.blank?
+    redirect_to matches_path, alert: "相性診断を行うには、両方のユーザーが自己紹介文を設定している必要があります。" and return
+  end
+
+  @compatibility_result = GeminiService.analyze_compatibility(@current_user, @other_user)
   Rails.logger.debug "Gemini診断結果: #{@compatibility_result.inspect}"
 end
 
