@@ -233,7 +233,7 @@ class GeminiService
   end
 
   def self.calculate_basic_compatibility(user1, user2)
-    score = 50 # ベーススコア
+    score = 60 # ベーススコア（最低スコアを60点に引き上げ）
     
     # 年齢差による調整
     if user1.age.present? && user2.age.present?
