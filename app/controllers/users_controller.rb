@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       @recommendations.select! { |rec| rec[:score] >= 40 }
       Rails.logger.info "[AIおすすめ] 推薦候補数(40点以上): #{@recommendations.size}"
       @recommendations.sort_by! { |rec| -rec[:score] }
+      @recommendations = @recommendations.first(3)
     end
 
     def index

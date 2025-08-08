@@ -238,7 +238,6 @@ class GeminiService
 
   def self.calculate_basic_compatibility(user1, user2)
     score = 60 # ベーススコア（最低スコアを60点に引き上げ）
-    
     # 年齢差による調整
     if user1.age.present? && user2.age.present?
       age_diff = (user1.age - user2.age).abs
@@ -249,23 +248,20 @@ class GeminiService
                else 5
                end
     end
-
     # 自己紹介文の長さによる調整
     if user1.description.present? && user2.description.present?
       score += 15
     elsif user1.description.present? || user2.description.present?
       score += 8
     end
-
     # GitHubアカウントの有無による調整
     if user1.github.present? && user2.github.present?
       score += 10
     elsif user1.github.present? || user2.github.present?
       score += 5
     end
-
-    # スコアを100点満点に調整
-    [score, 100].min
+    # スコアを95点満点に調整（100点は出さない）
+    [score, 95].min
   end
 
   def self.get_tech_compatibility_comment(user1, user2)
