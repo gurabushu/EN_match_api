@@ -5,7 +5,7 @@ gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 
-ruby '3.3.3'
+ruby "3.2.2"
 
 # gem "3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
