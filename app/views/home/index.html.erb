@@ -57,7 +57,7 @@
 <p class="users-count">ユーザ数：<%= @users.count %>件</p>
 
 <% if @users.present? %>
-  <% @users.first(3).each do |user| %>
+  <% @users.each do |user| %>
 
     <div class="user-list">
       <div class="name-img-wrapper">
