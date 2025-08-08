@@ -1,0 +1,7 @@
+// messages#create のcreate.js.erb
+
+// メッセージをチャット欄に追加
+document.getElementById("messages").insertAdjacentHTML("beforeend", "<%= j render @message %>");
+
+// フォームの内容をリセット
+document.getElementById("new_message").reset();

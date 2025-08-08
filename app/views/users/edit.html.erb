@@ -1,0 +1,28 @@
+
+<section class="intro-wrapper">
+
+<h1 class="page-title">プロフィール編集</h1>
+
+<div class="form-group">
+<%= form_with(model: @user, local: true) do |f| %>
+    <p><%= f.label :name, "ユーザー名" %></p>
+    <p><%= f.text_field :name %></p>
+    <p><%= f.label :skill, "スキル" %></p>
+    <p><%= f.text_field :skill %></p>
+    <p><%= f.label :description, "自己紹介", style: "height: 200px;" %></p>
+    <p><%= f.text_area :description %></p>
+    <p><%= f.label :age, "年齢" %></p>
+    <p><%= f.number_field :age, in: 0..100, step: 1 %></p>
+    <p><%= f.label :avatar, "アバター画像" %></p>
+    <p><%= f.file_field :avatar %></p>
+    <p><%= f.label :github, "GitHubアカウント" %></p>
+    <p><%= f.text_field :github, placeholder: "https://github.com/your_username" %></p>
+    <p><%= f.submit "更新" %></p>
+<% end %>
+</div>
+
+<div class="back-btn">
+<%= link_to "戻る", user_path(@user), class: "btn-element" %>
+<%= button_to "削除", user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn-element" %>
+</div>
+

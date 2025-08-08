@@ -17,11 +17,36 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Gemfile
+
+# 以下をコメントアウト
+# gem 'sqlite3', '~> 1.4'
+
+# 本番用にpgを使う
+group :production do
+  gem 'pg'
+end
+
+gem "openai", "~> 0.1.0"  # OpenAI API client gem
+
+gem 'dotenv-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+
+gem 'redis', '~> 5.0'
+
+# Gemfile
+gem 'rails-i18n'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
+
+gem "devise"
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"

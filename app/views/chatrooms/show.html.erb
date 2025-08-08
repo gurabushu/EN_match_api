@@ -1,0 +1,19 @@
+<div id="chatroom-id" data-chatroom-id="<%= @chatroom.id %>"></div>
+
+<h2><%= @chatroom.user_match_2.name %>さんとのチャット</h2>
+
+<div id="messages">
+  <% @chatroom.messages.order(:created_at).each do |message| %>
+    <%= render partial: 'messages/message', locals: { message: message, current_user: current_user } %>
+  <% end %>
+</div>
+
+<%= form_with model: [@chatroom, Message.new], url: chatroom_messages_path(@chatroom), local: true do |f| %>
+  <div class="message-form">
+    <%= f.hidden_field :recipient_user_id, value: @chatroom.user_match_2.id %>
+    <%= f.text_field :content, placeholder: "メッセージを入力", autofocus: true %>
+    <%= f.submit "送信", class: 'btn-element-chat' %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', chatrooms_path, class: 'btn-element' %>

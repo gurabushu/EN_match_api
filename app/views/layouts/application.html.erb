@@ -20,6 +20,15 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# Importmap for managing JavaScript dependencies %>
+
+    <%# Include any additional JavaScript files %>
+    <%= yield :javascript %>
+
+    <%# Include any additional stylesheets %>
+    <%= yield :stylesheets %>
+<%= javascript_importmap_tags %>
   </head>
 
   <body>

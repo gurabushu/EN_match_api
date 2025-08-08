@@ -1,0 +1,45 @@
+<div class="header-nav-wrapper">
+  <header class="header-top-login">
+    <h1>エンジニア同士がスキルで<br>繋がれるマッチングアプリ</h1>
+  </header>
+  <nav class="nav-bar">
+  <p class="icon-bar">ようこそ!
+    <% if current_user.avatar.attached? %>
+      <%= image_tag url_for(current_user.avatar), alt: "User Avatar", class: "user-avatar" %>
+    <% else %>
+      <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar" %>
+    <% end %>
+    <%= current_user.name %>さん
+  </p>
+    <ul>
+      <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
+      <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
+      <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
+      <li><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></li>
+      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
+    </ul>
+  </nav>
+</div>
+
+<h2 class="page-title"><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></h2>
+
+<% @matches.select { |match| match.user1 == current_user || match.user2 == current_user }.each do |match| %>
+  <div class="match-item">
+    <h3><%= match.user1.name %> と <%= match.user2.name %>が<span class="match-status">マッチしました</span>!</h3>
+    <p>マッチング日時: <%= match.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+
+    <div class="chat-button">
+      <% if match.chatroom.present? %>
+        <%= link_to "チャットを開始", chatroom_path(match.chatroom), class: "btn-element-chat" %>
+        <%= button_to "マッチング削除", match_path(match), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn-element" %>
+      <% else %>
+        <p>チャットルーム未作成</p>
+      <% end %>
+          <h3>AI相性診断:</h3>
+          <% other_user = match.user1 == current_user ? match.user2 : match.user1 %>
+          <%= link_to "診断結果を見る", compatibility_match_path(match), class: "btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to "戻る", root_path, class: "btn-element" %>

@@ -1,0 +1,21 @@
+#エンジニア情報登録画面ページ
+<section class="intro-wrapper">
+  <h1>エンジニア情報登録</h1>
+  <p>以下のフォームに必要事項を入力してください。</p>
+    <%= form_with model: @user, local: true do |f| %>
+        <div class="form-group">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "名前を入力してください" %>
+            <%= f.label :skill, "スキル1" %>
+            <%= f.text_field :skill, class: "form-control", placeholder: "スキルを入力してください。（例）Ruby, Pythonなど" %>
+            <span><%= f.label :description, "自己紹介" %></span>
+            <%= f.text_area :description, class: "form-control", placeholder: "趣味や今ハマっていることなど、簡単な自己紹介を入力してください" %>
+        </div>  
+        <div class="form-group">
+            <%= f.submit "登録", class: "btn-element" %>
+        </div>
+    <% end %>
+</section>  
+<div class="navigation">
+  <%= link_to "戻る", users_path, class: "btn btn-secondary" %>
+</div>  

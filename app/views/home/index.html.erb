@@ -1,18 +1,94 @@
-
-<header class="header">
+<% unless user_signed_in? %>
+<header class="header-top">
   <h1>エンジニア同士がスキルで繋がれるマッチングアプリ</h1>
 </header>
+<% end %>
 
-<div class="login">
-#ここにログインなど、デバイス実装後設置
+<% if user_signed_in? %>
+
+<div class="header-nav-wrapper">
+  <header class="header-top-login">
+    <h1>エンジニア同士がスキルで<br>繋がれるマッチングアプリ</h1>
+  </header>
+  <nav class="nav-bar">
+  <p class="icon-bar">ようこそ!
+    <% if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar, alt: "User Avatar", class: "user-avatar" %>
+    <% else %>
+      <%= image_tag "default_img.png", alt: "Default Avatar", class: "user-avatar" %>
+    <% end %>
+    <%= current_user.name %>さん
+  </p>
+    <ul>
+      <li><%= link_to "アカウント情報",account_path , class: "nav-link" %></li>
+      <li><%= link_to "マイプロフィール", user_path(current_user), class: "nav-link" %></li>
+      <li><%= link_to "いいね管理", likes_path, class: "nav-link" %></li>
+      <li><%= link_to "マッチング一覧", matches_path, class: "nav-link" %></li>
+      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
+    </ul>
+  </nav>
 </div>
+<% else %>
+<div class="login">
+  <%= link_to "ログイン", new_user_session_path , class:"btn btn-login" %>
+  <%= link_to "新規登録", new_user_registration_path, class:"btn btn-signup" %>
+</div>
+
+<% end %>
+
+
+<%= form_with url: search_path, method: :get, local: true do |f| %>
+  <div class="search-bar">
+    <p>フリーワード検索：<%= f.text_field :search, placeholder: "フリーワード検索" %></p>
+    <p>スキルで検索：<%= f.text_field :skill, placeholder: "スキルで検索" %></p>
+    <%= f.submit "検索", class: "btn-element-search" %>
+    <%= link_to "リセット", root_path,class: "btn-element", data: { turbo: false } %>
+  </div>
+
+<% end %>
+
 
 <h2>繋がれるユーザー一覧</h2>
-<div class="search-bar">
-  #ここに検索バー設置。
-</div
+<p class="users-count">ユーザ数：<%= @users.count %>件</p>
 
-<div class="user-list">
-#ここにユーザー一覧を表示。
+<% if @users.present? %>
+  <% @users.each do |user| %>
+
+    <div class="user-list">
+      <div class="name-img-wrapper">
+        <div class="user-img">
+          <%= image_tag user.avatar.attached? ? user.avatar : "default_img.png", class: "user-avatar" %>
+        </div>
+    <div class="user-info">
+      <h3>名前：<%= user.name %></h3>
+      <p class="skills">スキル: <%= user.skill %></p>
+      <p>自己紹介: <%= user.description %></p>
+      <p>年齢：<%= user.age %>歳</p>
+      <% if user.github.present? %>
+        <h4>GitHub: <%= link_to user.github, user.github, target: "_blank" %></h4>
+      <% else %>
+        <h4>GitHub: 未登録</h4>
+      <% end %>
+      <p>登録日: <%= user.created_at.strftime("%Y/%m/%d") %></p>
+    </div>
+   
+      
 </div>
-
+<div class="like-button">
+      <% if current_user && Like.exists?(liked_id: user.id, liker_id: current_user.id) %>
+        <% like = Like.find_by(liked_id: user.id, liker_id: current_user.id) %>
+        <%= button_to "いいねを取り消す", like_path(like), method: :delete %>
+        <% elsif current_user %>
+        <%= button_to "いいね 👍", likes_path, method: :post, params: { liked_id: user.id } %>
+      <% end %>
+      <h4>いいね数: <%= user.received_likes.count %></h4>
+</div>
+      <%= link_to "詳細", user_path(user), class: "btn-element-show" %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="no-users">
+    <h4>ユーザーが登録されていません</h4>
+    <%= link_to "ユーザー登録", new_user_registration_path, class: "btn-element", data: { turbo: false } %>
+  </div>
+<% end %>
