@@ -9,8 +9,8 @@
         @recommendations << { user: user, score: score, detail: result }
       end
     end
-    # スコア順で降順ソートし、上位のみ表示（例: 70点以上）
-    @recommendations.select! { |rec| rec[:score] >= 70 }
+    # スコア順で降順ソートし、上位のみ表示（例: 60点以上に緩和）
+    @recommendations.select! { |rec| rec[:score] >= 60 }
     @recommendations.sort_by! { |rec| -rec[:score] }
   end
 class UsersController < ApplicationController
