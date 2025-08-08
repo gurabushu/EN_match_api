@@ -424,7 +424,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  dotenv-rails
+  dotenv-rails (~> 3.0)
   importmap-rails
   jbuilder
   kamal
