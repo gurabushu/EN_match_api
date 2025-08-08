@@ -7,7 +7,6 @@ gem "propshaft"
 
 ruby "3.2.2"
 
-# gem "3", ">= 2.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -19,19 +18,17 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Gemfile
-
-
-# 本番用にpgを使う
-
 gem "openai", "~> 0.1.0"  # OpenAI API client gem
 
 gem 'dotenv-rails', '~> 3.0'
 
+# Production database
+gem 'pg', '~> 1.4'
+
 group :development, :test do
   gem 'rspec-rails'
+  gem "sqlite3", ">= 1.4"
 end
-
 
 gem 'redis', '~> 5.0'
 
@@ -58,12 +55,6 @@ gem "kamal", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
-
-
-# Gemfile
-
-
-gem 'pg', '~> 1.4'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

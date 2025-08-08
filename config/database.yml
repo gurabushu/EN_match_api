@@ -1,17 +1,15 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: rails_newmatch_EN_development
+  database: storage/development.sqlite3
 
 test:
   <<: *default
-  database: rails_newmatch_EN_test
-
-# config/database.yml
+  database: storage/test.sqlite3
 
 production:
   adapter: postgresql
