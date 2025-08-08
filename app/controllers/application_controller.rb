@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :user_signed_in?, :current_user
+  helper_method :user_signed_in?, :current_user, :guest_user?
 
   protected
 
@@ -13,5 +13,11 @@ class ApplicationController < ActionController::Base
     
     # アカウント編集時のパラメータ許可
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :skill, :description])
+  end
+
+  private
+
+  def guest_user?
+    current_user&.guest_user?
   end
 end

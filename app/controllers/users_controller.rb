@@ -14,11 +14,22 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         unless @user
             redirect_to users_path, alert: "ユーザーが見つかりません"
+            return
+        end
+        
+        if @user.guest_user?
+            redirect_to @user, alert: "ゲストユーザーのプロフィールは編集できません"
         end
     end
 
     def update
         @user = User.find(params[:id])
+        
+        if @user.guest_user?
+            redirect_to @user, alert: "ゲストユーザーのプロフィールは編集できません"
+            return
+        end
+        
         if @user.update(user_params)
             redirect_to @user, notice:"プロフィールを更新しました"
         else
@@ -26,10 +37,22 @@ class UsersController < ApplicationController
         end
     end
 
-     def destroy
+    def destroy
         @user = User.find(params[:id])
+        
+        if @user.guest_user?
+            redirect_to users_path, alert: "ゲストユーザーは削除できません"
+            return
+        end
+        
         @user.destroy
         redirect_to users_path,notice:"情報を削除しました"
+    end
+
+    def guest_sign_in
+        user = User.guest
+        sign_in user
+        redirect_to root_path, notice: 'ゲストユーザーとしてログインしました'
     end
 
 
