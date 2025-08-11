@@ -99,7 +99,7 @@ AIによる相性診断
 ・PostgreSQL
 
 
-・OpenAI API（GEMINI）
+・Gemini　API
 
 
 ・devise
