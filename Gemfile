@@ -23,7 +23,7 @@ gem "openai", "~> 0.16.0" # OpenAI API client gem
 gem 'dotenv-rails', '~> 3.0'
 
 # Production database
-gem 'pg', '~> 1.4'
+gem 'pg', '~> 1.6'
 
 group :development, :test do
   gem 'rspec-rails'
